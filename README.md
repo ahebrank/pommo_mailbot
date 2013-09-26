@@ -15,3 +15,14 @@ Requires the following Python packages, which our host had pre-installed:
 * json
 * datetime
 * re
+
+To use, edit the following parameters in mailbot.py:
+
+    base_url = 'FULL URL FOR BASE POMMO FOLDER'
+    username = 'A POMMO ADMIN USERNAME'
+    password = 'PASSWORD'
+    threshold = 3
+
+(where threshold is the number of minutes since the last logging activity--this is how the script assesses whether the MTA is stuck)
+
+Test, and then add as a cron job running at short intervals (i.e., in cPanel).
