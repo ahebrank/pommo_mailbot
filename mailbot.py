@@ -69,10 +69,8 @@ class Mailbot:
 				last_notice_time = datetime.datetime.strptime(logtime, '%H:%M:%S')
 			except:
 				i -= 1
-				pass
 			else:
 				current_time = datetime.datetime.now().replace(year = 1900, month = 1, day = 1)
-
 				# too long since last update?
 				if (current_time - last_notice_time) > datetime.timedelta(minutes = self.threshold):
 					return str(current_time - last_notice_time)
