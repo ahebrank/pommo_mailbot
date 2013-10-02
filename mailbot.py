@@ -40,13 +40,22 @@ class Mailbot:
 		self.opener = ul2.build_opener(*handlers)
 
 		req = ul2.Request(self.login_url, data)
-		response = self.opener.open(req)
-		self.content = response.read()
+		self.url_open(req)
+		
+	def url_open(self, request):
+		try:
+			response = self.opener.open(request)
+			self.content = response.read()
+		except:
+			self.content = None
+			return False
+		else:
+			return True
 
 	def get_status(self):
 		req = ul2.Request(self.status_url)
-		response = self.opener.open(req)
-		self.content = response.read()
+		if not self.url_open(req):
+			return 0
 		self.status = json.loads(self.content)
 
 		if self.status['status'] != 1:
